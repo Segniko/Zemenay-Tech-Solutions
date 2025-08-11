@@ -527,10 +527,10 @@ export default function Page() {
         </div>
       </motion.section>
 
-      {/* Our Clients marquee (left -> right loop) */}
+      {/* Our Clients Section */}
       <motion.section
         id="clients"
-        className="relative py-14 sm:py-16"
+        className="relative py-14 sm:py-16 overflow-hidden"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
@@ -542,38 +542,58 @@ export default function Page() {
             Trusted by innovative teams and forward‑thinking organizations.
           </motion.p>
 
-          <div className="mt-8 overflow-hidden">
-            <div className="relative flex">
-              <motion.ul className="marquee flex min-w-max items-center gap-6 pr-6" variants={fadeInUp}>
-                {["Acme Co", "Globex", "Umbrella", "Wayne Tech", "Stark Industries", "Hooli", "Initech", "Wonka"]
-                  .flatMap((c) => [c, c]) // duplicate for seamless loop
-                  .map((c, i) => (
-                    <li
-                      key={`${c}-${i}`}
-                      className="whitespace-nowrap rounded-full border bg-background/70 px-5 py-2 text-sm text-foreground/80 shadow-sm"
-                    >
-                      {c}
-                    </li>
-                  ))}
-              </motion.ul>
+          <div className="mt-8">
+            <div className="relative w-full overflow-hidden">
+              <div className="flex w-max">
+                {[...Array(2)].map((_, i) => (
+                  <div key={i} className="flex items-center gap-6 pr-6">
+                    {["Acme Co", "Globex", "Umbrella", "Wayne Tech", "Stark Industries", "Hooli", "Initech", "Wonka"].map((client, idx) => (
+                      <div 
+                        key={`${client}-${i}-${idx}`}
+                        className="whitespace-nowrap rounded-full border bg-background/70 px-5 py-2 text-sm text-foreground/80 shadow-sm flex-shrink-0"
+                      >
+                        {client}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
         <style jsx>{`
-          @keyframes marqueeRight {
+          @keyframes scrollLeftToRight {
             0% {
-              transform: translateX(-50%);
+              transform: translateX(0);
             }
             100% {
-              transform: translateX(0%);
+              transform: translateX(-50%);
             }
           }
-          .marquee {
-            animation: marqueeRight 28s linear infinite;
+          .flex.w-max {
+            animation: scrollLeftToRight 25s linear infinite;
           }
-          .marquee:hover {
+          .flex.w-max:hover {
             animation-play-state: paused;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .flex.w-max {
+              animation: none;
+              overflow-x: auto;
+              padding-bottom: 1rem;
+            }
+            .flex.w-max::-webkit-scrollbar {
+              height: 4px;
+            }
+            .flex.w-max::-webkit-scrollbar-track {
+              background: var(--muted);
+              border-radius: 2px;
+            }
+            .flex.w-max::-webkit-scrollbar-thumb {
+              background: var(--primary);
+              border-radius: 2px;
+            }
           }
         `}</style>
       </motion.section>
@@ -581,7 +601,7 @@ export default function Page() {
       {/* Testimonials */}
       <motion.section
         id="testimonials"
-        className="relative py-20 sm:py-28 bg-gradient-to-b from-background to-muted/10"
+        className="relative py-20 sm:py-28 bg-gradient-to-b from-background to-muted/10 overflow-hidden"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.15 }}
@@ -598,46 +618,90 @@ export default function Page() {
             </p>
           </motion.div>
 
-          <motion.div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3" variants={staggerContainer}>
-            {[
-              {
-                name: "Amina K.",
-                role: "Product Lead, Globex",
-                quote:
-                  "Zemenay delivered a blazing‑fast site and a design system our team loves. Velocity and quality in one.",
-              },
-              {
-                name: "Samuel T.",
-                role: "Founder, Initech",
-                quote: "From kickoff to launch, they were collaborative, thoughtful, and laser‑focused on outcomes.",
-              },
-              {
-                name: "Lina O.",
-                role: "Marketing Director, Hooli",
-                quote: "Our traffic and conversions jumped immediately. The attention to performance really shows.",
-              },
-            ].map((t) => (
-              <motion.div key={t.name} className="group relative" variants={fadeInUp}>
-                <div className="absolute -inset-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative h-full bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-8 transition-all duration-300 group-hover:shadow-lg">
-                  <div className="mb-6 text-5xl font-serif text-muted-foreground/20">"</div>
-                  <p className="text-lg text-foreground/90 mb-8 leading-relaxed">
-                    {t.quote}
-                  </p>
-                  <div className="flex items-center gap-4 mt-auto">
-                    <div className="relative h-12 w-12 rounded-full bg-gradient-to-br from-primary/10 to-primary/20 flex-shrink-0 flex items-center justify-center">
-                      <span className="text-lg font-medium text-foreground/80">
-                        {t.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div>
-                      <div className="font-medium text-foreground/90">{t.name}</div>
-                      <div className="text-sm text-muted-foreground">{t.role}</div>
-                    </div>
+          <motion.div className="relative" variants={fadeInUp}>
+            <div className="relative overflow-hidden">
+              <div className="flex w-max">
+                {[...Array(2)].map((_, i) => (
+                  <div key={i} className="flex space-x-8 pr-8">
+                    {[
+                      {
+                        name: "Amina K.",
+                        role: "Product Lead, Globex",
+                        quote:
+                          "Zemenay delivered a blazing‑fast site and a design system our team loves. Velocity and quality in one.",
+                      },
+                      {
+                        name: "Samuel T.",
+                        role: "Founder, Initech",
+                        quote: "From kickoff to launch, they were collaborative, thoughtful, and laser‑focused on outcomes.",
+                      },
+                      {
+                        name: "Lina O.",
+                        role: "Marketing Director, Hooli",
+                        quote: "Our traffic and conversions jumped immediately. The attention to performance really shows.",
+                      },
+                    ].map((t, idx) => (
+                      <div key={`${t.name}-${i}-${idx}`} className="w-[350px] flex-shrink-0 group relative">
+                        <div className="absolute -inset-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="relative h-full bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-8 transition-all duration-300 group-hover:shadow-lg">
+                          <div className="mb-6 text-5xl font-serif text-muted-foreground/20">"</div>
+                          <p className="text-lg text-foreground/90 mb-8 leading-relaxed">
+                            {t.quote}
+                          </p>
+                          <div className="flex items-center gap-4 mt-auto">
+                            <div className="relative h-12 w-12 rounded-full bg-gradient-to-br from-primary/10 to-primary/20 flex-shrink-0 flex items-center justify-center">
+                              <span className="text-lg font-medium text-foreground/80">
+                                {t.name.charAt(0)}
+                              </span>
+                            </div>
+                            <div>
+                              <div className="font-medium text-foreground/90">{t.name}</div>
+                              <div className="text-sm text-muted-foreground">{t.role}</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                ))}
+              </div>
+            </div>
+            
+            <style jsx>{`
+              @keyframes scrollRightToLeft {
+                0% {
+                  transform: translateX(0);
+                }
+                100% {
+                  transform: translateX(-50%);
+                }
+              }
+              .flex.w-max {
+                animation: scrollRightToLeft 35s linear infinite;
+                will-change: transform;
+              }
+              .flex.w-max:hover {
+                animation-play-state: paused;
+              }
+              @media (prefers-reduced-motion: reduce) {
+                .flex.w-max {
+                  animation: none;
+                  overflow-x: auto;
+                  padding-bottom: 1rem;
+                }
+                .flex.w-max::-webkit-scrollbar {
+                  height: 4px;
+                }
+                .flex.w-max::-webkit-scrollbar-track {
+                  background: var(--muted);
+                  border-radius: 2px;
+                }
+                .flex.w-max::-webkit-scrollbar-thumb {
+                  background: var(--primary);
+                  border-radius: 2px;
+                }
+              }
+            `}</style>
           </motion.div>
         </div>
       </motion.section>
