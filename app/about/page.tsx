@@ -4,7 +4,7 @@ import { SiteHeader } from "@/components/site-header"
 import { motion, Variants } from "framer-motion"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowUpRight, Sparkles, Users, Target, ShieldCheck, HeartHandshake, Globe, Award } from "lucide-react"
+import { ArrowUpRight, Sparkles, Users, Target, ShieldCheck, HeartHandshake, Globe, Award, Rocket, Star } from "lucide-react"
 import Image from "next/image"
 
 // Animation variants with proper typing
@@ -120,10 +120,10 @@ export default function AboutPage() {
             className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6"
           >
             {[
-              { label: "Projects Delivered", value: "120+", Icon: Award },
-              { label: "Avg. Lighthouse", value: "95+", Icon: Sparkles },
+              { label: "Projects Delivered", value: "12+", Icon: Award },
+              { label: "Avg. Rating", value: "9.5+", Icon: Star },
               { label: "Client Satisfaction", value: "98%", Icon: ShieldCheck },
-              { label: "Countries Served", value: "12+", Icon: Globe },
+              { label: "Years of Experience", value: "3+", Icon: Rocket },
             ].map((s, i) => (
               <motion.div
                 key={s.label}
@@ -180,13 +180,14 @@ export default function AboutPage() {
                 </Button>
               </motion.div>
             </div>
-            <div className="relative overflow-hidden rounded-xl border bg-muted/20 aspect-[4/3]">
+            <div className="relative overflow-hidden rounded-xl border bg-muted/20 aspect-[4/3] shadow-lg">
               <Image
-                src={"/images/about/people-first.png"}
-                alt="People collaborating in a learning space"
+                src={"/Team-image.png"}
+                alt="Zemenay team collaborating and working together"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
+                priority
               />
             </div>
           </motion.div>

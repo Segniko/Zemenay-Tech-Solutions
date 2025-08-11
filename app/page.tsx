@@ -613,8 +613,7 @@ export default function Page() {
               What Our Clients Say
             </h2>
             <p className="mt-4 text-muted-foreground text-lg">
-              Real feedback from the teams we partner with. We focus on outcomes, collaboration, and shipping work that
-              lasts.
+              Don't just take our word for it. Here's what industry professionals have to say about our services and solutions.
             </p>
           </motion.div>
 
