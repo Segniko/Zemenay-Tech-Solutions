@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Check, X, Star, TrendingUp, Shield, DollarSign, Layout, Brush, Search, Edit2, ShoppingCart, BarChart2 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 const planColors = {
   community: "text-yellow-400",
@@ -450,6 +451,108 @@ export default function PricingPage() {
                 </div>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 sm:py-24 bg-background">
+        <div className="mx-auto max-w-4xl px-6 sm:px-8">
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Frequently Asked Questions</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">Everything you need to know about our pricing and services.</p>
+          </motion.div>
+
+          <motion.div 
+            className="space-y-4"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.1
+                }
+              }
+            }}
+          >
+            {[
+              {
+                question: "What's included in the WordPress Solution?",
+                answer: "Our WordPress Solution includes a professionally designed website, custom branding, responsive design, SEO optimization, content management system, and ongoing support."
+              },
+              {
+                question: "How does the Enterprise pricing work?",
+                answer: "Enterprise pricing is customized based on your specific needs. We'll work with you to create a solution that fits your requirements and budget. Contact our sales team for a personalized quote."
+              },
+              {
+                question: "Can I upgrade or downgrade my plan later?",
+                answer: "Yes, you can upgrade or downgrade your plan at any time. We'll help you transition smoothly between plans with no downtime."
+              },
+              {
+                question: "What payment methods do you accept?",
+                answer: "We accept all major credit cards, bank transfers, and PayPal. Enterprise clients may also be eligible for annual billing with additional benefits."
+              },
+              {
+                question: "Is there a money-back guarantee?",
+                answer: "Yes, we offer a 14-day money-back guarantee on all our plans. If you're not satisfied with our service, we'll provide a full refund."
+              },
+              {
+                question: "What kind of support do you offer?",
+                answer: "We provide email and chat support for all plans, with response times under 24 hours. Enterprise clients receive priority support with faster response times and a dedicated account manager."
+              }
+            ].map((item, index) => (
+              <motion.div 
+                key={index}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { duration: 0.4 }
+                  }
+                }}
+                className="group"
+              >
+                <details className="group-open:bg-muted/20 transition-colors duration-200 rounded-xl border border-border/50 overflow-hidden">
+                  <summary className="flex cursor-pointer items-center justify-between p-6 text-left text-base font-medium text-foreground hover:bg-muted/10 transition-colors duration-200">
+                    <span>{item.question}</span>
+                    <svg className="h-5 w-5 text-muted-foreground transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </summary>
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className="px-6 pb-6 pt-0 text-muted-foreground"
+                  >
+                    {item.answer}
+                  </motion.div>
+                </details>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div 
+            className="mt-12 text-center"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <p className="text-muted-foreground mb-6">Still have questions? We're here to help.</p>
+            <Button className="rounded-full">
+              <Link href="/contact">Contact Support</Link>
+            </Button>
           </motion.div>
         </div>
       </section>

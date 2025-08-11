@@ -613,7 +613,7 @@ export default function Page() {
               What Our Clients Say
             </h2>
             <p className="mt-4 text-muted-foreground text-lg">
-              Don't just take our word for it. Here's what industry professionals have to say about our services and solutions.
+               Don't just take our word for it. Here's what industry professionals have to say about our services and solutions.
             </p>
           </motion.div>
 
