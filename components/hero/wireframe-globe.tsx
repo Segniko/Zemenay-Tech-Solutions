@@ -1,6 +1,8 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
+import { useAnimation } from 'framer-motion'
+import React from 'react'
 
 interface WireframeGlobeProps {
   size?: number // px
@@ -14,6 +16,18 @@ export default function WireframeGlobe({ size = 360, speedSec = 22, className = 
   const R = size / 2
   const latAngles = [-60, -40, -20, 0, 20, 40, 60]
   const longCount = 9
+
+  const lineAnimation = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        repeat: Infinity,
+        duration: 2,
+        ease: "easeInOut" as const,
+      },
+    },
+  }
 
   return (
     <div className={className} style={{ width: responsive ? '100%' : size, height: responsive ? '100%' : size }}>
@@ -60,6 +74,28 @@ export default function WireframeGlobe({ size = 360, speedSec = 22, className = 
               stroke="url(#line)"
               strokeWidth={0.8}
               opacity={0.1}
+            />
+          )
+        })}
+
+        {/* longitude ellipses */}
+        {Array.from({ length: longCount }).map((_, i) => {
+          const angle = (i / longCount) * 180
+          return (
+            <motion.ellipse
+              key={`lon-${i}`}
+              cx={R}
+              cy={R}
+              rx={R - 8}
+              ry={(R - 8) * 0.38}
+              transform={`rotate(${angle} ${R} ${R})`}
+              fill="none"
+              stroke="url(#line)"
+              strokeWidth={0.8}
+              opacity={0.1}
+              initial="hidden"
+              animate="visible"
+              variants={lineAnimation}
             />
           )
         })}
