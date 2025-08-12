@@ -12,16 +12,16 @@ export default function SiteFooter() {
             <span>© {new Date().getFullYear()} Zemenay. All rights reserved.</span>
           </div>
           <nav className="flex items-center gap-5 text-sm text-muted-foreground">
-            <Link href="#about" className="hover:text-foreground">
+            <Link href="/about" className="hover:text-foreground">
               About
             </Link>
-            <Link href="#services" className="hover:text-foreground">
+            <Link href="/services" className="hover:text-foreground">
               Services
             </Link>
-            <Link href="#pricing" className="hover:text-foreground">
+            <Link href="/pricing" className="hover:text-foreground">
               Pricing
             </Link>
-            <Link href="#faq" className="hover:text-foreground">
+            <Link href="/pricing#faq" className="hover:text-foreground">
               FAQ
             </Link>
           </nav>

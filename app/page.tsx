@@ -9,6 +9,7 @@ import { Handshake, Rocket, ShieldCheck, Sparkles, Layers, Cpu, Palette, Bolt } 
 import { motion, Variants, useMotionValue, useSpring, useTransform, useScroll, useReducedMotion } from "framer-motion"
 import { useRef, type MouseEvent, type ReactNode } from "react"
 import WireframeGlobe from "@/components/hero/wireframe-globe"
+import Link from "next/link"
 
 // Framer Motion variants
 const staggerContainer: Variants = {
@@ -484,18 +485,18 @@ export default function Page() {
                 >
                   {/* pulse dot + halo on left */}
                   <motion.span
-                    className="pointer-events-none absolute left-2 top-10 z-20 h-3 w-3 rounded-full bg-primary shadow"
+                    className={`pointer-events-none absolute z-20 h-3 w-3 rounded-full bg-primary shadow ${idx === 0 ? 'left-6' : idx === 1 ? 'left-10' : idx === 2 ? 'left-14' : 'left-18'} top-14`}
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
                   <motion.span
-                    className="pointer-events-none absolute left-[6px] top-8 z-0 hidden h-8 w-8 rounded-full border border-primary/30 md:block"
+                    className={`pointer-events-none absolute z-0 hidden h-8 w-8 rounded-full border border-primary/30 md:block ${idx === 0 ? 'left-6' : idx === 1 ? 'left-10' : idx === 2 ? 'left-12' : 'left-14'} top-12`}
                     animate={{ opacity: [0.3, 0.6, 0.3] }}
                     transition={{ duration: 2.4, repeat: Infinity }}
                   />
-                  <div className={`relative ml-20 ${offsetClass} w-full md:w-[520px]`}>
+                  <div className={`relative ml-20 ${offsetClass} w-full md:w-[390px]`}>
                     <div className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-primary/30 via-primary/10 to-transparent">
-                      <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur-sm transition-shadow duration-300 hover:shadow-xl">
+                      <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-shadow duration-300 hover:shadow-xl">
                         {/* animated blob background */}
                         <motion.div
                           className="pointer-events-none absolute -inset-12 opacity-50"
@@ -725,8 +726,12 @@ export default function Page() {
                 Let’s craft a fast, elegant, and scalable experience tailored to your audience.
               </p>
               <div className="mt-8 flex items-center justify-center gap-3">
-                <Button size="lg" className="rounded-full">Start a Project</Button>
-                <Button size="lg" variant="secondary" className="rounded-full">See Our Work</Button>
+                <Link href="/contact">
+                  <Button size="lg" className="rounded-full">Start a Project</Button>
+                </Link>
+                <Link href="/services">
+                  <Button size="lg" className="rounded-full">See Our Work</Button>
+                </Link>
               </div>
             </div>
           </div>

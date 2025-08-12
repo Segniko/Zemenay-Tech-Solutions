@@ -5,7 +5,7 @@ import SiteFooter from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Check, X, Star, TrendingUp, Shield, DollarSign, Layout, Brush, Search, Edit2, ShoppingCart, BarChart2 } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import Link from "next/link"
 
@@ -212,13 +212,13 @@ export default function PricingPage() {
           </motion.div>
 
           <motion.div 
-            className="mt-8 overflow-x-auto rounded-lg border bg-background"
+            className="mt-8 overflow-hidden rounded-lg border bg-background"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <table className="min-w-full text-left">
+            <table className="w-full text-left">
               <thead className="bg-muted/40">
                 <tr className="text-sm text-muted-foreground">
                   <th className="px-4 py-3 font-medium">Feature</th>
@@ -456,7 +456,7 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 sm:py-24 bg-background">
+      <section id="faq" className="py-16 sm:py-24 bg-background">
         <div className="mx-auto max-w-4xl px-6 sm:px-8">
           <motion.div 
             className="text-center mb-12"
@@ -465,24 +465,8 @@ export default function PricingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Frequently Asked Questions</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Everything you need to know about our pricing and services.</p>
-          </motion.div>
-
-          <motion.div 
-            className="space-y-4"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              show: {
-                transition: {
-                  staggerChildren: 0.1
-                }
-              }
-            }}
-          >
+            <h2 className="text-3xl font-bold tracking-tight mb-4">Frequently Asked Questions</h2>
+            <p className="text-muted-foreground">Everything you need to know about our services</p>
             {[
               {
                 question: "What's included in the WordPress Solution?",
@@ -498,7 +482,7 @@ export default function PricingPage() {
               },
               {
                 question: "What payment methods do you accept?",
-                answer: "We accept all major credit cards, bank transfers, and PayPal. Enterprise clients may also be eligible for annual billing with additional benefits."
+                answer: "We accept bank transfer, Telebirr, CBE birr. Enterprise clients may also be eligible for annual billing with additional benefits."
               },
               {
                 question: "Is there a money-back guarantee?",

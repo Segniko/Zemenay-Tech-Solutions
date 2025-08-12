@@ -6,6 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Button } from "@/components/ui/button"
 import { ArrowUpRight, Sparkles, Users, Target, ShieldCheck, HeartHandshake, Globe, Award, Rocket, Star } from "lucide-react"
 import Image from "next/image"
+import SiteFooter from "@/components/site-footer"
 
 // Animation variants with proper typing
 const container: Variants = {
@@ -98,10 +99,12 @@ export default function AboutPage() {
             transform the digital landscape, one project at a time.
           </motion.p>
           <div className="mt-8 flex items-center justify-center gap-3">
-            <Button className="rounded-full">Our Mission</Button>
-            <Button variant="secondary" className="rounded-full">
-              Meet the Team
-            </Button>
+            <a href="#people-first">
+              <Button className="rounded-full">Our Mission</Button>
+            </a>
+            <a href="#meet-our-team">
+              <Button variant="secondary" className="rounded-full">Meet the Team</Button>
+            </a>
           </div>
         </motion.div>
       </motion.section>
@@ -144,6 +147,7 @@ export default function AboutPage() {
 
       {/* People First */}
       <motion.section 
+        id="people-first"
         initial="hidden"
         animate="show"
         variants={container}
@@ -327,6 +331,7 @@ export default function AboutPage() {
 
       {/* Meet Our Team */}
       <motion.section 
+        id="meet-our-team"
         initial="hidden"
         animate="show"
         variants={container}
@@ -354,51 +359,90 @@ export default function AboutPage() {
 
           <motion.div 
             variants={staggerContainer}
-            className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto px-6"
+            className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto px-6"
           >
             {[
               {
                 name: "John Doe",
                 role: "CEO & Founder",
-                image: "/images/team/john-doe.jpg"
+                bio: "Visionary leader with 10+ years of experience in tech innovation and business strategy.",
+                social: {
+                  twitter: "#",
+                  linkedin: "#",
+                  github: "#"
+                }
               },
               {
                 name: "Jane Smith",
                 role: "Lead Designer",
-                image: "/images/team/jane-smith.jpg"
+                bio: "Creative mind with an eye for detail and passion for user-centered design solutions.",
+                social: {
+                  twitter: "#",
+                  linkedin: "#",
+                  dribbble: "#"
+                }
               },
               {
                 name: "Mike Johnson",
                 role: "Senior Developer",
-                image: "/images/team/mike-johnson.jpg"
+                bio: "Full-stack developer specializing in building scalable and performant applications.",
+                social: {
+                  twitter: "#",
+                  linkedin: "#",
+                  github: "#"
+                }
               }
             ].map((member, index) => (
               <motion.div 
                 key={member.name} 
-                className="relative overflow-hidden rounded-2xl border border-border bg-background p-8 text-left shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col"
+                className="group relative overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-b from-card to-background p-6 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:border-primary/30 h-full flex flex-col"
                 variants={item}
                 whileHover={{ 
-                  y: -5,
-                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+                  y: -8,
+                  scale: 1.02,
+                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
                 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                <motion.div 
-                  className="w-24 h-24 mb-6 rounded-full overflow-hidden bg-muted/50 flex items-center justify-center"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-                >
-                  <span className="text-3xl font-bold text-foreground/60">
-                    {member.name.split(' ').map(n => n[0]).join('')}
-                  </span>
-                </motion.div>
-                <h3 className="text-lg font-semibold text-foreground">{member.name}</h3>
-                <p className="text-sm text-muted-foreground mt-1">{member.role}</p>
+                <div className="relative mx-auto w-32 h-32 mb-6 -mt-14">
+                  <motion.div 
+                    className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/40 backdrop-blur-sm flex items-center justify-center text-4xl font-bold text-primary/90"
+                    whileHover={{ 
+                      scale: 0.95,
+                      rotate: 2,
+                      background: [
+                        'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.4) 100%)',
+                        'linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(124, 58, 237, 0.3) 100%)',
+                        'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.4) 100%)'
+                      ]
+                    }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  >
+                    <span className="text-4xl font-bold text-foreground/90">
+                      {member.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                  </motion.div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300"></div>
+                </div>
+                
+                <div className="flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold text-foreground/90 group-hover:text-primary transition-colors">
+                    {member.name}
+                  </h3>
+                  <p className="text-sm text-primary font-medium mt-1 mb-3">
+                    {member.role}
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-4 flex-1">
+                    {member.bio}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </motion.section>
+
+      <SiteFooter />
     </main>
   )
 }

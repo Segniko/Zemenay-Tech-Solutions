@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Mail, Phone, MapPin, Send, Linkedin, Github, Twitter } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
+import SiteFooter from "@/components/site-footer"
 
 // Typed animation variants
 const container: Variants = {
@@ -90,13 +91,15 @@ export default function ContactPage() {
   return (
     <main className="relative">
       {/* Subtle background grid + glow */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/10),transparent_60%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,theme(colors.border/40),transparent)] [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]" />
       </div>
 
-      <SiteHeader />
-      <section className="mx-auto max-w-7xl px-6 sm:px-8 py-16 sm:py-20">
+      <div className="relative z-10">
+        <SiteHeader />
+      </div>
+      <section className="mx-auto max-w-7xl px-6 sm:px-8 pt-24 pb-16 sm:pt-28 sm:pb-20">
         {/* Hero */}
         <motion.div initial="hidden" animate="show" variants={container} className="text-center max-w-3xl mx-auto">
           <motion.h1 variants={item} className="text-3xl sm:text-5xl font-bold tracking-tight">
@@ -168,33 +171,37 @@ export default function ContactPage() {
               <Tilt>
                 <Card className="bg-card/70 backdrop-blur supports-[backdrop-filter]:bg-card/60 border-border/60">
                   <CardContent className="p-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div className="flex items-start gap-3">
-                        <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                          <Mail className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <div className="text-sm text-muted-foreground">Email</div>
-                          <div className="font-medium">hello@zemenay.com</div>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                          <Phone className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <div className="text-sm text-muted-foreground">Phone</div>
-                          <div className="font-medium">+251 911 111 111</div>
+                    <div className="flex flex-col sm:flex-row gap-6">
+                      <div className="flex-1">
+                        <div className="flex items-start gap-3">
+                          <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mt-0.5">
+                            <Mail className="h-5 w-5 text-primary" />
+                          </div>
+                          <div className="overflow-hidden">
+                            <div className="text-sm text-muted-foreground">Email</div>
+                            <div className="font-medium">hello@zemenay.com</div>
+                          </div>
                         </div>
                       </div>
-                      <div className="flex items-start gap-3">
-                        <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                          <MapPin className="h-5 w-5 text-primary" />
+                      <div className="flex-1">
+                        <div className="flex items-start gap-3">
+                          <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mt-0.5">
+                            <MapPin className="h-5 w-5 text-primary" />
+                          </div>
+                          <div className="overflow-hidden">
+                            <div className="text-sm text-muted-foreground">Office</div>
+                            <div className="font-medium">Addis Ababa, Ethiopia</div>
+                          </div>
                         </div>
-                        <div>
-                          <div className="text-sm text-muted-foreground">Office</div>
-                          <div className="font-medium">Addis Ababa, Ethiopia</div>
-                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 mt-6">
+                      <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mt-0.5">
+                        <Phone className="h-5 w-5 text-primary" />
+                      </div>
+                      <div className="overflow-hidden">
+                        <div className="text-sm text-muted-foreground">Phone</div>
+                        <div className="font-medium">+251 911 111 111</div>
                       </div>
                     </div>
                   </CardContent>
@@ -231,6 +238,8 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   )
 }
