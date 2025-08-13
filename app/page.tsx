@@ -1,5 +1,6 @@
 "use client"
 
+// Core components
 import { SiteHeader } from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import SmoothScroll from "@/components/smooth-scroll"
@@ -12,7 +13,11 @@ import { useRef, type MouseEvent, type ReactNode } from "react"
 import WireframeGlobe from "@/components/hero/wireframe-globe"
 import Link from "next/link"
 
-// Framer Motion variants
+/**
+ * Animation Variants
+ * Reusable animation configurations for Framer Motion
+ */
+// Container with staggered children animations
 const staggerContainer: Variants = {
   hidden: {},
   show: {
@@ -65,9 +70,13 @@ const charVariants: Variants = {
   },
 }
 
-// Hero timing (no handshake overlay)
-const TEXT_DELAY_S = 0.1
+// Animation timing constants
+const TEXT_DELAY_S = 0.1 // Delay for text animations in seconds
 
+/**
+ * Magnetic CTA Button Component
+ * Creates an interactive button with magnetic pull effect on hover
+ */
 function MagneticCta({ href, children }: { href: string; children: ReactNode }) {
   const prefersReducedMotion = useReducedMotion()
   const max = 12
@@ -96,12 +105,18 @@ function MagneticCta({ href, children }: { href: string; children: ReactNode }) 
   )
 }
 
+/**
+ * Home Page Component
+ * Main landing page for Zemenay Tech Solutions
+ * Features animated hero section, featured work, and value propositions
+ */
 export default function Page() {
   const prefersReducedMotion = useReducedMotion()
   const heroRef = useRef<HTMLDivElement>(null)
   const tiltRef = useRef<HTMLDivElement>(null)
 
-  // 3D mouse tilt
+  // 3D tilt effect for hero section
+  // Uses spring physics for smooth movement
   const rXmv = useMotionValue(0)
   const rYmv = useMotionValue(0)
   const rX = useSpring(rXmv, { stiffness: 220, damping: 20, mass: 0.5 })
@@ -122,7 +137,8 @@ export default function Page() {
     rYmv.set(0)
   }
 
-  // Scroll parallax for right hero visual
+  // Parallax effect for hero visual
+  // Tracks scroll progress and transforms the visual element
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start end", "end start"] })
   const yParallax = useTransform(scrollYProgress, [0, 1], [0, -60])
 
@@ -142,7 +158,10 @@ export default function Page() {
       <SmoothScroll />
       <SiteHeader />
 
-      {/* Hero with 3D tilt and parallax visual */}
+      {/* 
+        Hero Section
+        Features 3D tilt effect, animated text, and interactive elements
+      */}
       <section id="home" className="relative" ref={heroRef}>
         <motion.div
           ref={tiltRef}
@@ -305,7 +324,10 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Featured Work */}
+      {/* 
+        Featured Work Section
+        Showcases portfolio projects with hover effects and animations
+      */}
       <motion.section
         id="work"
         className="relative py-20 sm:py-28 bg-gradient-to-b from-muted/10 to-background"
@@ -355,7 +377,10 @@ export default function Page() {
         </div>
       </motion.section>
 
-      {/* Why Zemenay (paragraph + 3 cards) */}
+      {/* 
+        Why Zemenay Section
+        Highlights key value propositions with animated cards
+      */}
       <motion.section
         id="why"
         className="relative py-16 sm:py-24 bg-gradient-to-b from-background to-muted/20"

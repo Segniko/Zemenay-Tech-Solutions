@@ -9,7 +9,10 @@ import { ArrowUpRight, Sparkles, Target, ShieldCheck, HeartHandshake, Award, Roc
 import Image from "next/image"
 import SiteFooter from "@/components/site-footer"
 
-// Animation variants with proper typing
+/**
+ * Animation Variants
+ * Reusable animation configurations for Framer Motion
+ */
 const container: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -20,44 +23,58 @@ const container: Variants = {
   },
 }
 
-// Item variant with proper typing
+/**
+ * Individual item animation variant
+ * @param i - Optional index for staggered delays
+ */
 const item: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 20 }, // Start 20px below
   show: (i: number = 0) => ({
     opacity: 1,
-    y: 0,
+    y: 0, // Animate to final position
     transition: {
-      duration: 0.5,
-      delay: i * 0.1,
+      duration: 0.5, // Animation duration in seconds
+      delay: i * 0.1, // Stagger delay based on index
     },
   }),
 }
 
-// Fade in up animation with proper typing
+/**
+ * Fade in and slide up animation
+ * Used for smooth entrance of elements
+ */
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 20 }, // Start hidden and 20px below
   show: {
     opacity: 1,
-    y: 0,
+    y: 0, // Animate to final position
     transition: {
-      duration: 0.6,
+      duration: 0.6, // Animation duration in seconds
     },
   },
 }
 
-// Stagger container with proper typing
+/**
+ * Staggered container animation
+ * For elements that should appear with a delay and staggered children
+ */
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
+      staggerChildren: 0.1, // Delay between each child
+      delayChildren: 0.2    // Initial delay before animation starts
     }
   }
 }
 
+/**
+ * About Page Component
+ * Displays company information, team members, values, and company story
+ */
 export default function AboutPage() {
+  // State for controlling the story modal visibility
   const [showStoryModal, setShowStoryModal] = useState(false)
   return (
     <main className="relative min-h-screen overflow-hidden">
@@ -72,7 +89,10 @@ export default function AboutPage() {
       />
       <SiteHeader />
 
-      {/* Hero */}
+      {/* 
+        Hero Section
+        Introduction section with main heading and call-to-action buttons
+      */}
       <motion.section 
         initial="hidden"
         animate="show"
@@ -111,11 +131,14 @@ export default function AboutPage() {
         </motion.div>
       </motion.section>
 
-      {/* By the Numbers */}
+      {/* 
+        Stats Section
+        Displays key metrics and achievements with animated counters
+      */}
       <motion.section
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.2 }} // Trigger when 20% visible
         variants={container}
         className="relative py-10 sm:py-14"
       >
@@ -147,7 +170,10 @@ export default function AboutPage() {
         </div>
       </motion.section>
 
-      {/* People First */}
+      {/* 
+        People First Section
+        Highlights the company's people-centric approach with a modal for more details
+      */}
       <motion.section 
         id="people-first"
         initial="hidden"
@@ -241,7 +267,10 @@ export default function AboutPage() {
         </div>
       </motion.section>
 
-      {/* Our Values */}
+      {/* 
+        Values Section
+        Showcases company values with icon cards and descriptions
+      */}
       <motion.section 
         initial="hidden"
         animate="show"
@@ -302,7 +331,12 @@ export default function AboutPage() {
         </div>
       </motion.section>
 
-      {/* Our Story - Timeline */}
+      {/* 
+        Timeline Section
+        Displays company milestones in a responsive timeline layout
+        - Desktop: Horizontal layout
+        - Mobile: Vertical layout
+      */}
       <motion.section
         initial="hidden"
         whileInView="show"
@@ -327,8 +361,7 @@ export default function AboutPage() {
                 { year: "2025", title: "Beyond", text: "Partnering deeper with clients to drive measurable outcomes." },
               ].map((s, idx) => (
                 <motion.li key={s.year} variants={item} className="relative">
-                  {/* node */}
-                  {/* node removed */}
+                  
                   {/* card */}
                   <div className={idx % 2 === 0 ? "mb-12 -mt-8" : "mt-12 -mb-8"}>
                     <Card className="overflow-hidden border border-border/60 bg-card/60">
@@ -372,7 +405,11 @@ export default function AboutPage() {
         </div>
       </motion.section>
 
-      {/* Meet Our Team */}
+      {/* 
+        Team Section
+        Displays team members with hover effects and contact information
+        Uses a responsive grid layout that adapts to different screen sizes
+      */}
       <motion.section 
         id="meet-our-team"
         initial="hidden"
