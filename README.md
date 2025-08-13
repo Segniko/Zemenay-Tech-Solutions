@@ -33,10 +33,6 @@ function App() {
 - **TypeScript Support**: Fully typed components
 - **Customizable**: Easily themeable with CSS variables
 
-## Documentation
-
-For detailed documentation and examples, please visit our [documentation site](https://zemenay.tech/docs).
-
 ## Features
 
 - **Modern UI/UX**: Clean and professional design with smooth animations
