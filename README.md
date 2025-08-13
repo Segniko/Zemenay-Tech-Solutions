@@ -282,6 +282,8 @@ Appears at the bottom of all pages.
 - Keyboard navigation support
 - Color contrast compliance
 
+Deployement: https://zemenay-tech-solutions.vercel.app
+
 ## Made By
 
 - [Segniko](https://github.com/Segniko)
