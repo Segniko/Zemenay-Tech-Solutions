@@ -2,8 +2,6 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A collection of reusable React components and hooks for building modern web applications, extracted from the Zemenay Tech Solutions website.
-
 ## Installation
 
 ```bash
