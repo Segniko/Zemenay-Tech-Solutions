@@ -139,7 +139,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <Label htmlFor="budget">Budget</Label>
-                        <Input id="budget" name="budget" placeholder="$10k - $50k" className="mt-2" />
+                        <Input id="budget" name="budget" placeholder="$500 - $1k" className="mt-2" />
                       </div>
                     </div>
 
