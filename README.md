@@ -287,8 +287,6 @@ Preview:
 
 <img width="1347" height="596" alt="image" src="https://github.com/user-attachments/assets/0639b819-4288-4bc9-b314-6a12fd1fb927" />
 
-Video: Since the video file is too big we have placed it in a zip file: "Zemenay-Tutorial-Video" in the main directory
-
 ## Made By
 
 - [Segniko](https://github.com/Segniko)
