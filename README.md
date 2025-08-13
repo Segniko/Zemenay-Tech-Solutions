@@ -1,6 +1,5 @@
 # Zemenay Tech Solutions
 
-[![npm version](https://img.shields.io/npm/v/@zemenay/tech-solutions.svg?style=flat-square)](https://www.npmjs.com/package/@zemenay/tech-solutions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A collection of reusable React components and hooks for building modern web applications, extracted from the Zemenay Tech Solutions website.
@@ -287,7 +286,6 @@ Deployement: https://zemenay-tech-solutions.vercel.app
 Preview:
 
 <img width="1347" height="596" alt="image" src="https://github.com/user-attachments/assets/0639b819-4288-4bc9-b314-6a12fd1fb927" />
-
 
 ## Made By
 
