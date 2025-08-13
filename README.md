@@ -1,6 +1,44 @@
-# Zemenay Tech Solutions Website
+# @zemenay/tech-solutions
 
-A modern, responsive website for Zemenay Tech Solutions built with Next.js 14 and TypeScript.
+[![npm version](https://img.shields.io/npm/v/@zemenay/tech-solutions.svg?style=flat-square)](https://www.npmjs.com/package/@zemenay/tech-solutions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A collection of reusable React components and hooks for building modern web applications, extracted from the Zemenay Tech Solutions website.
+
+## Installation
+
+```bash
+npm install @zemenay/tech-solutions
+# or
+yarn add @zemenay/tech-solutions
+# or
+pnpm add @zemenay/tech-solutions
+```
+
+## Usage
+
+```tsx
+import { Button, ThemeProvider } from '@zemenay/tech-solutions';
+
+function App() {
+  return (
+    <ThemeProvider>
+      <Button>Click me</Button>
+    </ThemeProvider>
+  );
+}
+```
+
+## Features
+
+- **Modern UI Components**: Pre-built, accessible components
+- **Dark/Light Mode**: Built-in theme support
+- **TypeScript Support**: Fully typed components
+- **Customizable**: Easily themeable with CSS variables
+
+## Documentation
+
+For detailed documentation and examples, please visit our [documentation site](https://zemenay.tech/docs).
 
 ## Features
 

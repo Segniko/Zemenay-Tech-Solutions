@@ -1,7 +1,27 @@
 {
-  "name": "zemenay-tech-solutions",
+  "name": "@zemenay/tech-solutions",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "A modern tech solutions website built with Next.js and React",
+  "keywords": ["nextjs", "react", "tech", "solutions", "web development"],
+  "author": "Zemenay Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/Zemenay-Tech-Solutions.git"
+  },
+  "homepage": "https://github.com/yourusername/Zemenay-Tech-Solutions#readme",
+  "bugs": {
+    "url": "https://github.com/yourusername/Zemenay-Tech-Solutions/issues"
+  },
+  "main": "./components/index.ts",
+  "types": "./components/index.d.ts",
+  "files": [
+    "components/**/*",
+    "lib/**/*",
+    "hooks/**/*",
+    "styles/**/*"
+  ],
   "scripts": {
     "build": "next build",
     "dev": "next dev",
