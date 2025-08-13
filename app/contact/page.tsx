@@ -166,7 +166,7 @@ export default function ContactPage() {
           </motion.div>
 
           {/* Contact info & socials */}
-          <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="space-y-6">
+          <motion.div variants={container} initial="hidden" animate="show" className="space-y-6">
             <motion.div variants={item}>
               <Tilt>
                 <Card className="bg-card/70 backdrop-blur supports-[backdrop-filter]:bg-card/60 border-border/60">

@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -11,10 +12,26 @@ export function SiteHeader() {
         <div className="h-16 flex items-center justify-between">
           {/* Brand */}
           <Link href="/" className="flex items-center gap-2 font-semibold">
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-sm bg-foreground text-background text-xs">
-              Z
-            </span>
-            <span>Zemenay</span>
+            <div className="relative h-20 w-64">
+              {/* Black logo - visible in light mode */}
+              <Image
+                src="images/Zemnay-Black-Tech.png"
+                alt="Zemenay Logo"
+                width={170}
+                height={80}
+                className="object-contain dark:hidden"
+                priority
+              />
+              {/* White logo - visible in dark mode */}
+              <Image
+                src="images/Zemnay-White-Tech.png"
+                alt="Zemenay Logo"
+                width={170}
+                height={80}
+                className="hidden object-contain dark:block"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Mobile nav */}
