@@ -1,10 +1,11 @@
 "use client"
 
+import { useState } from "react"
 import { SiteHeader } from "@/components/site-header"
-import { motion, Variants } from "framer-motion"
+import { motion, Variants, AnimatePresence } from "framer-motion"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowUpRight, Sparkles, Users, Target, ShieldCheck, HeartHandshake, Globe, Award, Rocket, Star } from "lucide-react"
+import { ArrowUpRight, Sparkles, Target, ShieldCheck, HeartHandshake, Award, Rocket, Star, X } from "lucide-react"
 import Image from "next/image"
 import SiteFooter from "@/components/site-footer"
 
@@ -57,6 +58,7 @@ const staggerContainer: Variants = {
 }
 
 export default function AboutPage() {
+  const [showStoryModal, setShowStoryModal] = useState(false)
   return (
     <main className="relative min-h-screen overflow-hidden">
       <div
@@ -178,10 +180,51 @@ export default function AboutPage() {
                 variants={item}
                 className="mt-6"
               >
-                <Button className="rounded-full">
+                <Button 
+                  className="rounded-full"
+                  onClick={() => setShowStoryModal(true)}
+                >
                   Read More
                   <ArrowUpRight className="ml-2 h-4 w-4" />
                 </Button>
+                
+                <AnimatePresence>
+                  {showStoryModal && (
+                    <motion.div 
+                      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      onClick={() => setShowStoryModal(false)}
+                    >
+                      <motion.div 
+                        className="relative max-w-2xl w-full p-8 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl overflow-hidden"
+                        initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <button 
+                          className="absolute top-4 right-4 p-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                          onClick={() => setShowStoryModal(false)}
+                        >
+                          <X className="h-5 w-5" />
+                        </button>
+                        
+                        <h3 className="text-2xl font-bold mb-4 text-white">Our Story</h3>
+                        <div className="space-y-4 text-white/90">
+                          <p>
+                            From our beginnings as a passionate team with a vision for digital excellence, Zemenay has been driven by a commitment to innovation and collaboration. Our journey has been about building a company that places people at the center—whether they are team members, clients, or the communities we serve.
+                          </p>
+                          <p>
+                            We focus on creating technology that genuinely makes a difference in how businesses operate and connect with their customers. At Zemenay, we're excited about continuing to shape the digital future, one solution at a time.
+                          </p>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             </div>
             <div className="relative overflow-hidden rounded-xl border bg-muted/20 aspect-[4/3] shadow-lg">
@@ -363,36 +406,24 @@ export default function AboutPage() {
           >
             {[
               {
-                name: "John Doe",
-                role: "CEO & Founder",
-                bio: "Visionary leader with 10+ years of experience in tech innovation and business strategy.",
-                social: {
-                  twitter: "#",
-                  linkedin: "#",
-                  github: "#"
-                }
+                image: "images/Freadam-Abebe.png",
+                name: "Freadam Abebe",
+                role: "CO-Founder & Product Manager",
+                bio: "5+ years in tech leadership",
               },
               {
-                name: "Jane Smith",
-                role: "Lead Designer",
-                bio: "Creative mind with an eye for detail and passion for user-centered design solutions.",
-                social: {
-                  twitter: "#",
-                  linkedin: "#",
-                  dribbble: "#"
-                }
+                image: "images/Tehetna-Askal.png",
+                name: "Tehetna Askal",
+                role: "CO-Founder & Project Manager",
+                bio: "Expert in agile methodologies",
               },
               {
-                name: "Mike Johnson",
-                role: "Senior Developer",
-                bio: "Full-stack developer specializing in building scalable and performant applications.",
-                social: {
-                  twitter: "#",
-                  linkedin: "#",
-                  github: "#"
-                }
+                image: "images/Michael-Engida.png",
+                name: "Michael Engida",
+                role: "Co-Founder & Business Development",
+                bio: "Driving business growth",
               }
-            ].map((member, index) => (
+            ].map((member) => (
               <motion.div 
                 key={member.name} 
                 className="group relative overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-b from-card to-background p-6 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:border-primary/30 h-full flex flex-col"
@@ -404,25 +435,26 @@ export default function AboutPage() {
                 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                <div className="relative mx-auto w-32 h-32 mb-6 -mt-14">
+                <div className="relative mx-auto w-36 h-36 -mt-4 mb-4">
                   <motion.div 
-                    className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/40 backdrop-blur-sm flex items-center justify-center text-4xl font-bold text-primary/90"
+                    className="absolute inset-0 rounded-full overflow-hidden border-4 border-white/20 shadow-lg"
                     whileHover={{ 
-                      scale: 0.95,
-                      rotate: 2,
-                      background: [
-                        'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.4) 100%)',
-                        'linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(124, 58, 237, 0.3) 100%)',
-                        'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.4) 100%)'
-                      ]
+                      scale: 0.98,
                     }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <span className="text-4xl font-bold text-foreground/90">
-                      {member.name.split(' ').map(n => n[0]).join('')}
-                    </span>
+                    <div className="w-full h-full relative">
+                      <Image
+                        src={`/${member.image}`}
+                        alt={member.name}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover object-top"
+                        style={{ objectPosition: 'center top' }}
+                      />
+                    </div>
                   </motion.div>
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-full opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300"></div>
                 </div>
                 
                 <div className="flex-1 flex flex-col">

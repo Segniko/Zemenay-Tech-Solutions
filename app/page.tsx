@@ -3,6 +3,7 @@
 import { SiteHeader } from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import SmoothScroll from "@/components/smooth-scroll"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Handshake, Rocket, ShieldCheck, Sparkles, Layers, Cpu, Palette, Bolt } from "lucide-react"
@@ -543,12 +544,12 @@ export default function Page() {
             Trusted by innovative teams and forward‑thinking organizations.
           </motion.p>
 
-          <div className="mt-8">
-            <div className="relative w-full overflow-hidden">
-              <div className="flex w-max">
-                {[...Array(2)].map((_, i) => (
-                  <div key={i} className="flex items-center gap-6 pr-6">
-                    {["Acme Co", "Globex", "Umbrella", "Wayne Tech", "Stark Industries", "Hooli", "Initech", "Wonka"].map((client, idx) => (
+          <div className="mt-8 relative w-full overflow-hidden">
+            <div className="relative hover-pause">
+              <div className="flex">
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className="animate-scroll flex items-center gap-6 pr-6">
+                    {["Hiyaw Animations", "Efuye Gela", "Chewata", "Wonka", "EGA", "The Disruptors Den"].map((client, idx) => (
                       <div 
                         key={`${client}-${i}-${idx}`}
                         className="whitespace-nowrap rounded-full border bg-background/70 px-5 py-2 text-sm text-foreground/80 shadow-sm flex-shrink-0"
@@ -559,11 +560,34 @@ export default function Page() {
                   </div>
                 ))}
               </div>
+              
+              {/* Gradient fade effect on the sides */}
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10"></div>
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10"></div>
             </div>
           </div>
         </div>
 
         <style jsx>{`
+          @keyframes scroll {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(calc(-100% - 1.5rem));
+            }
+          }
+          
+          .animate-scroll {
+            animation: scroll 30s linear infinite;
+            display: flex;
+            width: fit-content;
+          }
+          
+          .hover-pause:hover .animate-scroll {
+            animation-play-state: paused;
+          }
+          
           @keyframes scrollLeftToRight {
             0% {
               transform: translateX(0);
@@ -625,20 +649,23 @@ export default function Page() {
                   <div key={i} className="flex space-x-8 pr-8">
                     {[
                       {
-                        name: "Amina K.",
-                        role: "Product Lead, Globex",
+                        name: "Biniyam Masresha",
+                        role: "Co-founder at Hiyaw Animations",
+                        image: "/images/Biniyam-Masresha.png",
                         quote:
-                          "Zemenay delivered a blazing‑fast site and a design system our team loves. Velocity and quality in one.",
+                          "Working with this team has been an absolute game-changer for our business. Their innovative solutions have streamlined our processes and boosted our productivity tenfold!",
                       },
                       {
-                        name: "Samuel T.",
-                        role: "Founder, Initech",
-                        quote: "From kickoff to launch, they were collaborative, thoughtful, and laser‑focused on outcomes.",
+                        name: "Dagmawi Bedilu",
+                        role: "CSO at Efuye Gela",
+                        image: "/images/Dagmawi-Bedilu.png",
+                        quote: "I can't recommend their services enough. The level of expertise and dedication they bring to each project is unparalleled. Our ROI has skyrocketed since partnering with them.",
                       },
                       {
-                        name: "Lina O.",
-                        role: "Marketing Director, Hooli",
-                        quote: "Our traffic and conversions jumped immediately. The attention to performance really shows.",
+                        name: "Kirubel Samuel",
+                        role: "Co-founder at Chewataawaqi",
+                        image: "/images/Kirubel-Samuel.png",
+                        quote: "The customer support is top-notch. They're always available to answer questions and provide guidance. It's refreshing to work with a company that truly cares about its clients' success.",
                       },
                     ].map((t, idx) => (
                       <div key={`${t.name}-${i}-${idx}`} className="w-[350px] flex-shrink-0 group relative">
@@ -649,10 +676,14 @@ export default function Page() {
                             {t.quote}
                           </p>
                           <div className="flex items-center gap-4 mt-auto">
-                            <div className="relative h-12 w-12 rounded-full bg-gradient-to-br from-primary/10 to-primary/20 flex-shrink-0 flex items-center justify-center">
-                              <span className="text-lg font-medium text-foreground/80">
-                                {t.name.charAt(0)}
-                              </span>
+                            <div className="relative h-12 w-12 rounded-full overflow-hidden border-2 border-white shadow-md flex-shrink-0">
+                              <Image
+                                src={t.image}
+                                alt={t.name}
+                                width={48}
+                                height={48}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
                             <div>
                               <div className="font-medium text-foreground/90">{t.name}</div>

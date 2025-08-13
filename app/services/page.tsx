@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, Variants } from 'framer-motion'
-import { Laptop, Braces, Search, ShieldCheck, Target, Code, Zap, CheckCircle, ArrowRight, Users, LayoutGrid, BarChart2, Shield, Star, TrendingUp, Calendar, Clock, DollarSign, Globe, Rocket, Sparkles, CircleDashed } from "lucide-react"
+import { Laptop, Braces, Search, ShieldCheck, Target, Code, Zap, CheckCircle, ArrowRight, Users, LayoutGrid, BarChart2, Shield, Star, TrendingUp, Calendar, Clock, DollarSign, Globe, Rocket, Sparkles, CircleDashed, Code2, ShoppingBag, Smartphone, Stethoscope, Home, ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { SiteHeader } from "@/components/site-header"
@@ -192,78 +192,76 @@ export default function ServicesPage() {
                 title: "E-Commerce Platform",
                 description: "A modern, scalable e-commerce solution with real-time inventory management and advanced analytics.",
                 tech: "React, Node.js, MongoDB",
-                image: "https://source.unsplash.com/800x600/?ecommerce",
-                color: "text-blue-500"
+                icon: ShoppingBag,
+                color: "blue"
               },
               {
                 title: "Enterprise CRM",
                 description: "Custom CRM system with AI-powered customer insights and automated workflow management.",
                 tech: "Next.js, TypeScript, PostgreSQL",
-                image: "https://source.unsplash.com/800x600/?crm",
-                color: "text-emerald-500"
+                icon: Users,
+                color: "emerald"
               },
               {
                 title: "Mobile Banking App",
                 description: "Secure, user-friendly banking application with biometric authentication and real-time transactions.",
                 tech: "React Native, Node.js, AWS",
-                image: "https://source.unsplash.com/800x600/?mobile",
-                color: "text-amber-500"
+                icon: Smartphone,
+                color: "amber"
               },
               {
-                title: "AI Chatbot Platform",
-                description: "Enterprise-grade chatbot solution with natural language processing and multi-channel integration.",
-                tech: "Python, TensorFlow, Redis",
-                image: "https://source.unsplash.com/800x600/?ai",
-                color: "text-purple-500"
+                title: "Developer Training",
+                description: "Comprehensive training programs for developers in modern web and mobile technologies.",
+                tech: "MERN Stack",
+                icon: Code2,
+                color: "purple"
               },
               {
-                title: "Healthcare Management System",
-                description: "Comprehensive healthcare management solution with HIPAA compliance and telemedicine capabilities.",
+                title: "Healthcare System",
+                description: "Comprehensive healthcare management solution with HIPAA compliance and telemedicine.",
                 tech: "Vue.js, Java, MongoDB",
-                image: "https://source.unsplash.com/800x600/?healthcare",
-                color: "text-rose-500"
+                icon: Stethoscope,
+                color: "rose"
               },
               {
-                title: "Real Estate Marketplace",
+                title: "Real Estate Platform",
                 description: "Modern real estate platform with virtual tours and AI property valuation.",
                 tech: "Angular, .NET, SQL Server",
-                image: "https://source.unsplash.com/800x600/?real-estate",
-                color: "text-indigo-500"
+                icon: Home,
+                color: "indigo"
               },
             ].map((project, index) => (
               <motion.div
                 key={project.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.1
-                }}
-                className="group relative overflow-hidden rounded-xl bg-background/90 backdrop-blur-sm border border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-lg"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
               >
-                <motion.div
-                  className="relative h-[200px] w-full"
-                  whileHover="hover"
-                  variants={imageScale}
-                >
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                </motion.div>
                 <div className="p-6">
-                  <div className={`w-10 h-10 rounded-full ${project.color} bg-opacity-10 flex items-center justify-center mb-4`}>
-                    <Sparkles className={`w-6 h-6 ${project.color}`} />
+                  <div className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-${project.color}-500/10`}>
+                    <project.icon className={`h-6 w-6 text-${project.color}-500`} />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Code className="w-4 h-4" />
-                    <span>{project.tech}</span>
+                  <h3 className="text-xl font-semibold tracking-tight text-foreground mb-3">
+                    {project.title}
+                  </h3>
+                  <p className="mb-5 text-muted-foreground">
+                    {project.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+                      <Code2 className="h-4 w-4" />
+                      {project.tech}
+                    </span>
+                    <Button variant="ghost" size="sm" className="h-8 gap-1 text-sm">
+                      View Project
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </Button>
                   </div>
+                </div>
+                <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className={`absolute inset-0 bg-gradient-to-br from-${project.color}-500/5 to-transparent`} />
                 </div>
               </motion.div>
             ))}
